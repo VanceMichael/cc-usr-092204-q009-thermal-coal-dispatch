@@ -1,0 +1,47 @@
+[
+  {
+    "report_id": "R-1001",
+    "batch_id": "B-20260701-001",
+    "leg": "装车",
+    "quantity_tonnes": 3000,
+    "occurred_at": "2026-07-01T08:00:00+08:00",
+    "reported_at": "2026-07-01T08:05:00+08:00",
+    "reporter": "矿区"
+  },
+  {
+    "report_id": "R-1002",
+    "batch_id": "B-20260701-001",
+    "leg": "在途",
+    "quantity_tonnes": 3000,
+    "occurred_at": "2026-07-02T14:00:00+08:00",
+    "reported_at": "2026-07-02T14:02:00+08:00",
+    "reporter": "铁路"
+  },
+  {
+    "report_id": "R-1003",
+    "batch_id": "B-20260701-001",
+    "leg": "到厂",
+    "quantity_tonnes": 2950,
+    "occurred_at": "2026-07-03T07:30:00+06:00",
+    "reported_at": "2026-07-03T12:40:00+08:00",
+    "reporter": "电厂"
+  },
+  {
+    "report_id": "R-1003",
+    "batch_id": "B-20260701-001",
+    "leg": "到厂",
+    "quantity_tonnes": 2950,
+    "occurred_at": "2026-07-03T07:30:00+06:00",
+    "reported_at": "2026-07-03T12:40:00+08:00",
+    "reporter": "电厂"
+  },
+  {
+    "report_id": "R-1004",
+    "batch_id": "B-20260701-001",
+    "leg": "退运",
+    "quantity_tonnes": 50,
+    "occurred_at": "2026-07-03T10:10:00+08:00",
+    "reported_at": "2026-07-03T10:12:00+08:00",
+    "reporter": "铁路"
+  }
+]

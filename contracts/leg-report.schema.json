@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "环节数量报送",
+  "description": "矿区、铁路、电厂对同一批煤各环节数量的报送结构，对应规则 R4、R5、R6",
+  "type": "object",
+  "required": [
+    "report_id",
+    "batch_id",
+    "leg",
+    "quantity_tonnes",
+    "occurred_at",
+    "reported_at",
+    "reporter"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "description": "报送唯一标识，重复报送凭此去重（R5）"
+    },
+    "batch_id": {
+      "type": "string",
+      "description": "批次标识，同一批煤跨环节共用（R4）"
+    },
+    "leg": {
+      "type": "string",
+      "enum": ["装车", "在途", "到厂", "退运"],
+      "description": "环节名称"
+    },
+    "quantity_tonnes": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "数量（吨）"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "环节发生时间，须含时区偏移，跨时区晚到数据按此归位（R5）"
+    },
+    "reported_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "报送到达时间，仅用于迟报监测，不参与库存归位"
+    },
+    "reporter": {
+      "type": "string",
+      "enum": ["矿区", "铁路", "电厂"],
+      "description": "报送方，须与环节责任方一致（R6）"
+    }
+  },
+  "additionalProperties": false
+}
