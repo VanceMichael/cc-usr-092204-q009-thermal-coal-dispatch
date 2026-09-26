@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "调度指令",
+  "type": "object",
+  "required": ["instructionId", "summary", "major", "status", "history"],
+  "properties": {
+    "instructionId": { "type": "string" },
+    "summary": { "type": "string" },
+    "tons": { "type": "number", "exclusiveMinimum": 0 },
+    "major": {
+      "type": "boolean",
+      "description": "重大人工改序为 true 时须经两名不同人员批准"
+    },
+    "approvals": {
+      "type": ["object", "null"],
+      "required": ["proposer", "approver"],
+      "properties": {
+        "proposer": { "type": "string" },
+        "approver": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "issued", "acknowledged", "executing", "completed", "cancelled"]
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["at", "status"],
+        "properties": {
+          "at": { "type": "string", "format": "date-time" },
+          "status": { "type": "string" },
+          "actor": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

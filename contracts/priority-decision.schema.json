@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "紧急倾斜决策",
+  "type": "object",
+  "required": ["decisionId", "date", "plantId", "emergencyOrderId", "trigger", "preemptedOrders", "reason"],
+  "properties": {
+    "decisionId": {
+      "type": "string",
+      "pattern": "^PD-\\d{8}-\\d{3}$",
+      "description": "PD-YYYYMMDD-序号"
+    },
+    "date": { "type": "string", "format": "date" },
+    "plantId": { "type": "string" },
+    "emergencyOrderId": { "type": "string" },
+    "trigger": {
+      "type": "object",
+      "description": "触发阈值与当时的量化缺口证据",
+      "required": ["thresholdDays", "currentSafetyDays", "firstGapDate", "gapTons"],
+      "properties": {
+        "thresholdDays": { "type": "number" },
+        "currentSafetyDays": { "type": "number" },
+        "firstGapDate": { "type": "string", "format": "date" },
+        "gapTons": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "preemptedOrders": {
+      "type": "array",
+      "description": "被挤占的既有订单",
+      "items": {
+        "type": "object",
+        "required": ["orderId", "tons"],
+        "properties": {
+          "orderId": { "type": "string" },
+          "tons": { "type": "number" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "reason": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

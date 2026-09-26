@@ -1,0 +1,70 @@
+{
+  "planId": "RP-2026-0715",
+  "version": 3,
+  "generatedAt": "2026-07-15T02:00:00Z",
+  "frozenThrough": "2026-07-16",
+  "plants": [
+    {
+      "plantId": "PLT-A",
+      "name": "A市第一直供电厂",
+      "region": "华东网-A区",
+      "stockTons": 42000,
+      "baseDailyBurnTons": 6000,
+      "safetyDays": 7,
+      "daily": [
+        { "date": "2026-07-16", "tempC": 38, "heatFactor": 1.15, "arrivalTons": 5000 },
+        { "date": "2026-07-17", "tempC": 39, "heatFactor": 1.2, "arrivalTons": 4000 },
+        { "date": "2026-07-18", "tempC": 40, "heatFactor": 1.25, "arrivalTons": 3000 },
+        { "date": "2026-07-19", "tempC": 40, "heatFactor": 1.25, "arrivalTons": 3000 },
+        { "date": "2026-07-20", "tempC": 37, "heatFactor": 1.1, "arrivalTons": 8000 }
+      ]
+    },
+    {
+      "plantId": "PLT-B",
+      "name": "B市第二直供电厂",
+      "region": "华东网-B区",
+      "stockTons": 80000,
+      "baseDailyBurnTons": 5000,
+      "safetyDays": 7,
+      "daily": [
+        { "date": "2026-07-16", "tempC": 36, "heatFactor": 1.1, "arrivalTons": 6000 },
+        { "date": "2026-07-17", "tempC": 36, "heatFactor": 1.1, "arrivalTons": 6000 },
+        { "date": "2026-07-18", "tempC": 37, "heatFactor": 1.1, "arrivalTons": 6000 },
+        { "date": "2026-07-19", "tempC": 37, "heatFactor": 1.1, "arrivalTons": 6000 },
+        { "date": "2026-07-20", "tempC": 35, "heatFactor": 1.05, "arrivalTons": 6000 }
+      ]
+    }
+  ],
+  "capacities": [
+    {
+      "region": "华东网-A区",
+      "date": "2026-07-18",
+      "mineLoadableTons": 20000,
+      "lineCapacityTons": 15000,
+      "railcarTurnoverTons": 18000,
+      "committedTons": 9000
+    },
+    {
+      "region": "华东网-B区",
+      "date": "2026-07-18",
+      "mineLoadableTons": 12000,
+      "lineCapacityTons": 14000,
+      "railcarTurnoverTons": 13000,
+      "committedTons": 10000
+    }
+  ],
+  "orders": [
+    { "orderId": "ORD-2201", "plantId": "PLT-A", "date": "2026-07-18", "tons": 6000, "contractNo": "HT-2026-A-17", "status": "committed" },
+    { "orderId": "ORD-2202", "plantId": "PLT-A", "date": "2026-07-18", "tons": 3000, "contractNo": "HT-2026-A-18", "status": "committed" },
+    { "orderId": "ORD-2203", "plantId": "PLT-B", "date": "2026-07-18", "tons": 10000, "contractNo": "HT-2026-B-05", "status": "committed" },
+    { "orderId": "ORD-2204", "plantId": "PLT-A", "date": "2026-07-18", "tons": 5000, "contractNo": null, "status": "proposed" }
+  ],
+  "heatBands": [
+    { "above": 40, "factor": 1.25 },
+    { "above": 38, "factor": 1.15 },
+    { "above": 35, "factor": 1.05 }
+  ],
+  "priorityDecisions": [],
+  "revisions": [],
+  "lateStockReports": []
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "滚动计划",
+  "type": "object",
+  "required": ["planId", "version", "frozenThrough", "plants", "capacities", "orders"],
+  "properties": {
+    "planId": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "frozenThrough": {
+      "type": "string",
+      "format": "date",
+      "description": "冻结截止日（含）；预测修订不得触及该日及之前的区间"
+    },
+    "plants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["plantId", "stockTons", "baseDailyBurnTons", "safetyDays", "daily"],
+        "properties": {
+          "plantId": { "type": "string" },
+          "name": { "type": "string" },
+          "region": { "type": "string" },
+          "stockTons": { "type": "number", "minimum": 0 },
+          "baseDailyBurnTons": { "type": "number", "exclusiveMinimum": 0 },
+          "safetyDays": { "type": "number", "minimum": 0 },
+          "daily": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["date"],
+              "properties": {
+                "date": { "type": "string", "format": "date" },
+                "tempC": { "type": ["number", "null"] },
+                "heatFactor": { "type": "number", "minimum": 1 },
+                "arrivalTons": { "type": "number", "minimum": 0 },
+                "reportedStockTons": { "type": "number", "minimum": 0 }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    "capacities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["region", "date", "mineLoadableTons", "lineCapacityTons", "railcarTurnoverTons", "committedTons"],
+        "properties": {
+          "region": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "mineLoadableTons": { "type": "number", "minimum": 0 },
+          "lineCapacityTons": { "type": "number", "minimum": 0 },
+          "railcarTurnoverTons": { "type": "number", "minimum": 0 },
+          "committedTons": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["orderId", "plantId", "date", "tons", "status"],
+        "properties": {
+          "orderId": { "type": "string" },
+          "plantId": { "type": "string" },
+          "date": { "type": "string", "format": "date" },
+          "tons": { "type": "number", "exclusiveMinimum": 0 },
+          "contractNo": { "type": ["string", "null"] },
+          "status": {
+            "type": "string",
+            "enum": ["proposed", "committed", "prioritized", "preempted"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "heatBands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["above", "factor"],
+        "properties": {
+          "above": { "type": "number" },
+          "factor": { "type": "number", "minimum": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "priorityDecisions": { "type": "array" },
+    "revisions": { "type": "array" },
+    "lateStockReports": { "type": "array" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "物流事件（装车/在途/到厂/退运）",
+  "type": "object",
+  "required": ["eventId", "batchId", "stage", "tons", "occurredAt", "confirmerRole"],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "事件唯一编号；重复报送只入账一次"
+    },
+    "batchId": { "type": "string", "description": "批次煤编号，守恒核算单位" },
+    "stage": { "type": "string", "enum": ["LOAD", "IN_TRANSIT", "ARRIVE", "RETURN"] },
+    "tons": { "type": "number", "exclusiveMinimum": 0 },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "sourceTimeZone": {
+      "type": "string",
+      "pattern": "^[+-]\\d{2}:?\\d{2}$",
+      "description": "源时区偏移，如 +08:00；业务日期统一换算到 UTC"
+    },
+    "confirmerRole": {
+      "type": "string",
+      "enum": ["矿区", "铁路", "电厂"],
+      "description": "确认方角色，须与事件环节匹配"
+    },
+    "fromStage": {
+      "type": "string",
+      "enum": ["transit", "plant"],
+      "description": "仅退运事件需要：退运来源环节"
+    }
+  },
+  "additionalProperties": false
+}
